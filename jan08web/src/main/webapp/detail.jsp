@@ -28,6 +28,45 @@ $(document).ready(function(){
 	});
 	
 	
+
+	
+	
+	
+	
+	//댓글 수정하기
+	$(".commentEdit").click(function(){
+		if(confirm('수정하시겠습니까?')){
+			//필요한 값 cno잡기 , 수정한 내용 잡기 + 로그인(세션) -> 서블릿에서 정리 
+			let cno = $(this).siblings('.cno').val();
+//			let cmm = $(this).parents('.comment').children('.ccomment').text(); 얘도 가넝
+			let cmm = $(this).parents('.chead').next(); //변경
+			//alert(cno + " : " + cmm);
+			$(this).hide();
+			$(this).next().hide();
+			
+			cmm.css('height', '110');
+			cmm.css('padding-top', '10px');
+			cmm.css('backgroundColor', 'beige');
+			
+			let commentChange = cmm.html().replaceAll("<br>", "\r\n");
+			//alert(commentChange);
+			
+			let recommentBox = '<div class="recommentBox">';
+			recommentBox += '<form action="./cedit" method="post">';
+			recommentBox += '<textarea class="commentcontent" name="comment">' + commentChange + '</textarea>';
+			recommentBox += '<input type="hidden" name="cno" value="' + cno + '">';
+			recommentBox += '<button class="comment-btn" type="submit">댓글수정</button>';
+			recommentBox += '</form></div>';
+			
+			cmm.html(recommentBox);
+		}
+		
+	});
+	
+
+	
+	
+	
 	//댓글 삭제 버튼을 누른 경우
 	$(".commentDelete").click(function(){
 		//alert("댓삭...?");
@@ -72,17 +111,7 @@ $(document).ready(function(){
 	});
 	
 	
-	$(".commentEdit").click(function(){
-		if(confirm('수정하시겠습니까?')){
-			//필요한 값 cno잡기 , 수정한 내용 잡기 + 로그인(세션) -> 서블릿에서 정리 
-			let cno = $(this).siblings('.cno').val();
-//			let cmm = $(this).parents('.comment').children('.ccomment').text(); 얘도 가넝
-			let cmm = $(this).parents('.chead').next().text();
-			alert(cno + " : " + cmm);
-		}
-		
-	});
-	
+
 	
 	
 	
@@ -146,11 +175,24 @@ $(document).ready(function(){
 		}
 		
 	});
+	
+	//댓글쓰기 창에 쓸 수 있는 글자 표시해주고 넘어가면 입력 불가로 바꾸기
+	//id="commentcontent"
+	//id="comment-btn"
+	$("#commentcontent").keyup(function(){
+        let text = $(this).val();
+        if(text.length > 100){
+           alert("100자 넘었어요.");
+           $(this).val(  text.substr(0, 100)   );   
+        }
+        $("#comment-btn").text("글쓰기 " + text.length +  "/100");
+     });
+	
+	
+	
+	
 });
 
-/* function commentwrite() {
-	alert("버튼을 눌렀습니다!");
-} */
 </script>
 </head>
 <body>
