@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+.detailDIV {
+	width: 900px;
+	height: auto;
+	background-color: beige;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.detailTITLE {
+	width: 100%;
+	height: 50px;
+	font-size: large;
+	border-bottom: 5px solid black;
+	line-height: 50px;
+}
+.detailWRITECOUNT {
+	width: 100%;
+	height: 50px;
+}
+.detailWRITE, .detailCOUNT {
+	width: 50%;
+	float: left;
+	height: 50px;
+	line-height: 50px;
+}
+.detailWRITE img{
+	/* 아이콘과 글자 정렬 맞추기 */
+	vertical-align: text-bottom;
+}
+.detailWRITE img:hover{
+	background-color: white;
+}
+.detailCOUNT {
+	text-align: right;
+}
+.detailCONTENT {
+	width: calc(100% - 20px);
+	min-height: 300px;
+	height: auto;
+	margin: 10px;
+	border: 1px solid green;
+	box-sizing: border-box;
+}
+.comment-write{
+	margin-top: 10px;
+	width: 100%;
+	height: 120px;
+	padding: 10px;
+	background-color: beige;
+	box-sizing: border-box;
+}
+.comment-form textarea{
+	margin: 0;
+	width: calc(100% - 100px);
+	height: 100px;
+	padding: 5px;
+	border: 0px;
+	float: left;
+	resize: none;
+	box-sizing: border-box;
+}
+.comment-form button{
+	margin: 0;
+	padding: 0;
+	width: 95px;
+	height: 100px;
+}
+
+/* 댓글 출력 관련 css */
+.comments{
+	width: 100%;
+	min-height: 120px;
+	height: auto;
+	box-sizing: border-box;
+}
+.comment{
+	margin-top: 10px;
+	width: 100%;
+	min-height: 50px;
+	height: auto;
+}
+.chead{
+	width: 100%;
+	height: 30px;
+	background-color: beige;
+}
+.cname{
+	width: auto;
+	height: auto;
+	margin-left: 5px;
+	line-height: 20px;
+	float: left;
+}
+.cdate{
+	width: auto;
+	height: auto;
+	margin-right: 5px;
+	line-height: 20px;
+	float: right;
+}
+.ccomment{
+	width: 100%;
+	height: auto;
+	margin-left: 5px;
+	padding-top: 2px;
+}
