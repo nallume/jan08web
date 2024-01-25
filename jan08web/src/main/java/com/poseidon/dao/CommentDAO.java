@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.naming.CompositeName;
+
 import com.poseidon.dto.CommentDTO;
 
 public class CommentDAO extends AbstractDAO {
@@ -48,6 +50,27 @@ public class CommentDAO extends AbstractDAO {
 			close(null, pstmt, con);
 		}
 		
+		return result;
+	}
+
+	public int commentUpdate(CommentDTO dto) {
+		int result = 0;
+		
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE comment SET ccomment=? WHERE cno=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getCcomment());
+			pstmt.setInt(2, dto.getCno());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(null, pstmt, con);
+		}
+						
 		return result;
 	}
 	

@@ -26,11 +26,7 @@ $(document).ready(function(){
 		$(".comment-write").show();	// 댓글창은 나타나고
 		//$(".comment-write").slideToggle('slow'); // ..스르륵 등장
 	});
-	
-	
 
-	
-	
 	
 	
 	//댓글 수정하기
@@ -40,6 +36,9 @@ $(document).ready(function(){
 			let cno = $(this).siblings('.cno').val();
 //			let cmm = $(this).parents('.comment').children('.ccomment').text(); 얘도 가넝
 			let cmm = $(this).parents('.chead').next(); //변경
+			
+
+			
 			//alert(cno + " : " + cmm);
 			$(this).hide();
 			$(this).next().hide();
@@ -47,22 +46,74 @@ $(document).ready(function(){
 			cmm.css('height', '110');
 			cmm.css('padding-top', '10px');
 			cmm.css('backgroundColor', 'beige');
-			
-			let commentChange = cmm.html().replaceAll("<br>", "\r\n");
+
+			//let commentChange = cmm.html().replaceAll("<br>", "\r\n");
 			//alert(commentChange);
 			
 			let recommentBox = '<div class="recommentBox">';
-			recommentBox += '<form action="./cedit" method="post">';
-			recommentBox += '<textarea class="commentcontent" name="comment">' + commentChange + '</textarea>';
+		  //recommentBox += '<form action="./cedit" method="post">';
+			recommentBox += '<textarea class="commentcontent" name="comment">' + (cmm.html().replaceAll("<br>", "\r\n")) + '</textarea>';
 			recommentBox += '<input type="hidden" name="cno" value="' + cno + '">';
 			recommentBox += '<button class="comment-btn" type="submit">댓글수정</button>';
-			recommentBox += '</form></div>';
+		  //recommentBox += '</form>';
+			recommentBox += '</div>';
 			
 			cmm.html(recommentBox);
+			
+//			$(".comment-btn").click(function(){
+//				alert("수정?");			
+//			});
 		}
 		
 	});
-	
+
+
+	// 24 - 1 - 25 추가
+	//댓글 수정 반영  comment-btn 버튼 눌렀을 때, cno값, commentcontent값 가져오는 명령 만들기
+	//$(".comment-btn").click(function() - 안됨 왜?
+	//얘는 동적 생성된 녀석이라서...?
+	$(document).on('click', ".comment-btn", function(){
+		//alert("수정?");
+		let cno = $(this).prev().val();	
+		let newcomment = $(".commentcontent").val();
+//		let newcomment = $(this).prev().prev().text();
+//		let newcomment = commentChange;
+		
+		let comment = $(this).parents('.ccomment'); // 댓글 위치
+		
+		$.ajax({
+			url : './recomment',
+			type : 'post',		
+			dataType : 'text', 
+			data : {'cno':cno , 'comment': newcomment},  
+			success : function(result){ // 0, 1
+				if(result == 1){
+				//alert("통신 성공"); - 수정된 데이터를 화면에 보여주면 됨
+				$('.recommentBox').remove();
+				//comment.text(newcomment);
+				comment.html(newcomment.replace(/(?:\r\n|\r|\n)/g, '<br>'));
+				comment.css('backgroundColor','white');
+				comment.css('min-height', '50px');
+				comment.css('height', 'auto');
+				
+				$(".commentEdit").show();
+				$(".commentDelete").show();
+
+
+				} else {
+					// 실패 화면 재 로드.
+					alert("수정 실패로 화면을 갱신합니당");				
+					//둘 다 가넝
+					//location.href='./detail?page=${param.page}&no=${param.no}';
+					location.href='./detail?page=${param.page}&no=${detail.no}';
+				}
+			},
+			error : function(error){ //통신오류
+				alert("수정 실패 : " + error);
+			}
+		})
+		
+	});	
 
 	
 	

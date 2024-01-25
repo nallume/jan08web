@@ -5,6 +5,15 @@ import java.util.List;
 
 public class TeamC {
 	List<String> members = new ArrayList<String>();
+
+	public List<String> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<String> members) {
+		this.members = members;
+	}
+
 	public List<List<String>> team = new ArrayList<List<String>>();
 
 	public TeamC() {
