@@ -48,7 +48,7 @@ function check(){
 function finish(){
 	if(confirm("결정 완?")){
 		let setname = $('#name').val();
-		let setmenu = $('.coffee').val().checked;
+		let setmenu = $('.coffee').prop("check", true);
 		let setice = $('.ice').val();
 		
 		alert(setname + setmenu + setice);
