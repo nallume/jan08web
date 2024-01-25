@@ -24,7 +24,7 @@ public class CoffeeDAO extends AbstractDAO {
 		
 		list = t.getMembers();		
 		Collections.sort(list);		
-		list.add("선생님");
+		list.add("윤승");
 		
 		
 		return list;
