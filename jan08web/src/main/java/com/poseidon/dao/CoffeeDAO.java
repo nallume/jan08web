@@ -94,7 +94,7 @@ public class CoffeeDAO extends AbstractDAO {
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT COUNT(*), clname FROM coffee WHERE clname=?";
+		String sql = "SELECT COUNT(*) FROM coffee WHERE clname=?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
