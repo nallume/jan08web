@@ -65,6 +65,26 @@ $(document).ready(function() {
 .w1 {
 	width: 100px;
 }
+.total {
+    margin-top: 20px;
+    font-size: medium;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
 </style>
 </head>
 <body>	
