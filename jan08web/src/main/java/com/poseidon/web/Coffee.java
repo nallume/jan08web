@@ -54,9 +54,11 @@ public class Coffee extends HttpServlet {
 		CoffeeDAO dao = new CoffeeDAO();
 		int result = dao.menu(dto);
 		
-		if(result == 1) {
-			System.out.println("입력 완");
-			response.sendRedirect("./coffee");
+		if (result == 1) {			
+			PrintWriter pw = response.getWriter();
+			pw.print(result);			
+		} else {			
+			System.out.println("요기?");
 		}
 		
 	}
