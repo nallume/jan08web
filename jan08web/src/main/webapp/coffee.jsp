@@ -17,10 +17,10 @@ $(document).ready(function() {
     $('#checkName').on('click', function() {
         var inputName = $('#name').val();
         let nameList = "${classMate}"; 
+        // JSP에서 서블릿으로부터 전달받은 List
 
-        if (nameList.indexOf(inputName) != -1) {
-            alert('입력한 이름은 리스트에 있습니다.');
-            alert("안녕 " + inputName +"! 메뉴를 골라");
+        if (nameList.indexOf(inputName) !== -1) {
+            alert("안녕 " + inputName.substring(1) +"! 메뉴를 골라");
             $('#finishBtn').prop('disabled', false);
         } else {
             alert("우리반에 그런 사람은 업어용...");
@@ -34,8 +34,6 @@ $(document).ready(function() {
     		let setmenu = $('input[name="menu"]:checked').val();
     		let setice = $('input[name="ice"]:checked').val();
     		
-    		alert("이름 : " + setname + "메뉴" + setmenu + setice);
-    		
     		$.ajax({
     			url: './coffee',
     			type: 'post',
@@ -44,6 +42,9 @@ $(document).ready(function() {
     			success : function(result){
     				if(result == 1) {
     					alert("반영 완");
+    					
+    					location.reload();
+                        
    					} else {
    						alert("에러");
    					}
@@ -60,6 +61,11 @@ $(document).ready(function() {
 });
 
 </script>
+<style type="text/css">
+.w1 {
+	width: 100px;
+}
+</style>
 </head>
 <body>	
 	<div class="container">
