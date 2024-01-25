@@ -11,63 +11,53 @@
 <link href="./css/index.css" rel="stylesheet" />
 <link href="./css/menu.css" rel="stylesheet" />
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
-<style type="text/css">
-.w1 {
-	width: 100px;
-}
-</style>
 <script type="text/javascript">
-function normal(){
-	$("#button").hide(); 	
-}
-
-function check(){	
-	let name = $('#name').val();
-	$.ajax({
-		url: './nameCheck',
-		type: 'post',
-		dataType: 'text',
-		data: {'name' : name},
-		success : function(result){
-			if(result == 1) {
-				alert("있어용");
-				$('#button').show();
-			} else {
-				alert("우리반에 그런 사람은 업어용...");
-			}
-		},
-		error : function (request, status, error){
-			alert("통신 오류");
-		}
-		
-	})
+$(document).ready(function() {
 	
-	return false;
-}
+    $('#checkName').on('click', function() {
+        var inputName = $('#name').val();
+        let nameList = "${classMate}"; 
 
-function finish(){
-	if(confirm("결정 완?")){
-		let setname = $('#name').val();
-		let setmenu = $('.coffee').prop("check", true);
-		let setice = $('.ice').val();
-		
-		alert(setname + setmenu + setice);
-		
-		let form = $('<form></form>');
-		form.attr('name', 'form');
-		form.attr('method', 'post');
-		form.attr('action', './coffee');
-		
-		form.append($('<input/>', {type:'text', name:'name', value:setname})); 
-		form.append($('<input/>', {type:'radio', name:'menu', value:setmenu}));
-		form.append($('<input/>', {type:'radio', name:'ice', value:setice}));
-
-		form.appendTo("body");
-		form.submit();
-		
-	}
-}
-
+        if (nameList.indexOf(inputName) != -1) {
+            alert('입력한 이름은 리스트에 있습니다.');
+            alert("안녕 " + inputName +"! 메뉴를 골라");
+            $('#finishBtn').prop('disabled', false);
+        } else {
+            alert("우리반에 그런 사람은 업어용...");
+        }
+    });
+    
+    
+    $('#finishBtn').on('click', function(){
+    	if(confirm("결정 완?")){
+    		let setname = $('#name').val();
+    		let setmenu = $('input[name="menu"]:checked').val();
+    		let setice = $('input[name="ice"]:checked').val();
+    		
+    		alert("이름 : " + setname + "메뉴" + setmenu + setice);
+    		
+    		$.ajax({
+    			url: './coffee',
+    			type: 'post',
+    			dataType: 'text',
+    			data: {'name':setname, 'menu':setmenu, 'ice':setice},
+    			success : function(result){
+    				if(result == 1) {
+    					alert("반영 완");
+   					} else {
+   						alert("에러");
+   					}
+   				},
+    			error : function (request, status, error){
+    				alert("통신 오류");
+   				}  				
+  			});
+    	}
+    	 	    	
+    });
+    
+    
+});
 
 </script>
 </head>
@@ -79,11 +69,11 @@ function finish(){
 		<div class="main">
 			<div class="mainStyle">
 				<article>
-				<h1>뽑기</h1>
-				<div class="select">
-						<div class="inputName">이름<br>
+					<h1>뽑기</h1>
+					<div class="select">
+						<div class="selectName">이름<br>
 							<input type="text" id="name" name="name" placeholder="이름을 정확히 입력하세요">
-							<button onclick="check()">이름 체크</button>
+							<button id="checkName">이름 체크</button>
 						</div><br>
 						<div class="selectMenue">메뉴 선택<br>
 							<input type="radio" class="coffee" name="menu" value="1" checked/>커피
@@ -94,9 +84,9 @@ function finish(){
 							<input type="radio" name="ice" class="ice" value="0" checked/>핫
 						</div><br>
 						<div class="btn">
-							<button id="button" onclick="finish()">&ensp;결정&ensp;</button>				
+							<button id="finishBtn" disabled="disabled">&ensp;결정&ensp;</button>				
 						</div>
-				</div>
+					</div>
 				</article>
 				
 				<article>
