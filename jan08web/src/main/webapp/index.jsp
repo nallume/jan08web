@@ -19,56 +19,38 @@
 		<div class="main">
 			<div class="mainStyle">
 				<article>
-					<h1>Home</h1>
+					<h1>바질...</h1>
 				</article>
 				<article>
-					<!-- 변수 값 대입 -->
-					<c:set var="number" value="105" />
-					<c:out value="${number }" />
-					<br>
-
-					<c:forEach begin="1" end="9" var="row" step="2">
-						2 x ${row } = ${row*2 }<br>
-					</c:forEach>
-
-					<!-- 조건문 -->
-					<c:if test="${number eq 105 }">
-						number는 105 입니다.<br>
-						
-						조건문에 쓸 수 있는 것들<br>
-						eq  11 == 11<br>
-					    ne  10 != 11<br>
-						lt   5 〈 10<br>
-						le   5 〈=10<br>
-						gt  11 〉 10<br>
-						ge  11 〉=10<br>
-						&&<br>
-						||<br>
-						empty<br>
-						not empty
-					</c:if>
-				</article>
+					<div>
+						<img alt="basil" src="./img/basil.jpg">
+					</div>
+					<div>
+                            			<p class="saying">
+						<h3>"언제 키워서 잡아먹냐."</h3>
+						</p>
+                      				<p class="people">
+						- mom</p>					
+					</div>
 					<hr>
-					1~45까지 짝수만 출력하세요 <br>
-				<article>
-					<c:forEach begin="1" end="45" var="row">
-						<c:if test="${row % 2 eq 0 }">
-							${row }
-						</c:if>
-					</c:forEach>
+					<div>
+                            			<p class="saying">
+						<h3>"듣지마 넌 최고의 바질이야."</h3>
+						</p>
+                      				<p class="people">
+						- farmer</p>					
+					</div>
+					<hr>
+					<div>
+                            			<p class="saying">
+						<h3>"......."</h3>
+						</p>
+                      				<p class="people">
+						- basil</p>					
+					</div>
 				</article>
-				<hr>
-				<article>
-					<br>
-					<c:forEach begin="1" end="10" var="row" varStatus="s" >
-						${s.index }
-						${s.first } <!-- 첫번째 값이냐 (참 거짓)-->
-						${s.last } <!-- 마지막 값이냐 -->
-						${s.begin } <!-- 시작 값 -->
-						${s.end } <!-- 마지막 값 --> / <br>
-					</c:forEach>
-					
-				</article>
+				
+
 			</div>
 		</div>
 		<footer>
