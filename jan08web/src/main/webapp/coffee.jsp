@@ -105,7 +105,7 @@ th {
 							<input type="radio" class="coffee" name="menu" value="1" checked/>커피
 							<input type="radio" class="coffee" name="menu" value="2" checked/>차
 						</div><br>
-						<div class="selectIce" >아이스 / 핫 <br>
+						<div class="selectIce" >아이스 or 핫 <br>
 							<input type="radio" name="ice" class="ice" value="1" checked/>아이스
 							<input type="radio" name="ice" class="ice" value="0" checked/>핫
 						</div><br>
