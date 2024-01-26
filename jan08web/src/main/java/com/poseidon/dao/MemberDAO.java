@@ -9,9 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.naming.spi.DirStateFactory.Result;
-
-import com.poseidon.dto.BoardDTO;
 import com.poseidon.dto.MemberDTO;
 
 //login, 회원가입, 회원탈퇴처리, 회원 정보보기
@@ -22,7 +19,7 @@ public class MemberDAO extends AbstractDAO{
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT COUNT(*) AS count, mname FROM member WHERE mid=? AND mpw=?";
+		String sql = "SELECT COUNT(*) AS count, mname, mgrade FROM member WHERE mid=? AND mpw=?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -34,6 +31,7 @@ public class MemberDAO extends AbstractDAO{
 			if (rs.next()) {
 				dto.setCount(rs.getInt("count"));
 				dto.setMname(rs.getString("mname"));
+				dto.setMgrade(rs.getInt("mgrade"));
 			}
 			
 		} catch (SQLException e) {
@@ -176,6 +174,37 @@ public class MemberDAO extends AbstractDAO{
 		}
 						
 		return data;
+	}
+
+	public List<Map<String, Object>> memberList() {
+		
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT mno, mid, mname, mdate, mgrade FROM member";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Map<String, Object> member = new HashMap<String, Object>();
+				member.put("mno", rs.getInt("mno"));
+				member.put("mid", rs.getString("mid"));
+				member.put("mname", rs.getString("mname"));
+				member.put("mdate", rs.getString("mdate"));
+				member.put("mgrade", rs.getInt("mgrade"));
+				list.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}		
+		
+		return list;
 	}
 
 	

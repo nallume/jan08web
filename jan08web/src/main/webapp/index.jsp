@@ -32,7 +32,7 @@
                       				<p class="people">
 						- mom</p>					
 					</div>
-					<hr>
+					<hr><br>
 					<div>
                             			<p class="saying">
 						<h3>"듣지마 넌 최고의 바질이야."</h3>
@@ -40,7 +40,7 @@
                       				<p class="people">
 						- farmer</p>					
 					</div>
-					<hr>
+					<hr><br>
 					<div>
                             			<p class="saying">
 						<h3>"......."</h3>

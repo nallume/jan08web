@@ -69,15 +69,26 @@ public class Login extends HttpServlet {
 			
 			
 			if(dto.getCount() == 1) {
-				System.out.println("정상 로그인");
-				// 세션 만들기(겁나 어려움)
-				// 로그인을 하고 있냐 없냐 감시, 로그인 상태 유지 시간 정하기 등...
-				HttpSession session = request.getSession();
-				session.setAttribute("mname", dto.getMname()); //mname이라는 이름으로 세션 만듦
-				session.setAttribute("mid", dto.getMid());  // mid라는 이름으로 세션 만듦
 				
-				// 페이지 이동 = board
-				response.sendRedirect("./board");
+				if(dto.getMgrade() >= 5) {
+					
+					System.out.println("정상 로그인");
+					// 세션 만들기(겁나 어려움)
+					// 로그인을 하고 있냐 없냐 감시, 로그인 상태 유지 시간 정하기 등...
+					HttpSession session = request.getSession();
+					session.setAttribute("mname", dto.getMname()); //mname이라는 이름으로 세션 만듦
+					session.setAttribute("mid", dto.getMid());  // mid라는 이름으로 세션 만듦
+				
+					// 페이지 이동 = board
+					response.sendRedirect("./board");
+				} else {
+					System.out.println("로그인 금지 회원");
+					int block = 1;
+					request.setAttribute("blocked", block);
+					RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+					rd.forward(request, response);
+				}
+				
 			} else {
 				System.out.println("로그인 실패");
 				//페이지 이동 = login?error=4567 이 숫자는 뭐지

@@ -45,6 +45,12 @@ function err(){
 	errBox.style.color = 'green';
 	errBox.style.fontSize = "10pt";
 }
+/* function blocked(){
+	let errBox = document.querySelector("#errorMSG"); /* #id = errorMSG를 찾아서 errBox에 대입 */
+	errBox.innerHTML = "<marquee>~ 올바른 id와 pw를 입력하세요 ~</marquee>" /* 내부 텍스트를 이걸로 바꿔줘라 */
+	errBox.style.color = 'green';
+	errBox.style.fontSize = "10pt";
+} */
 </script>
 </head>
 <body>
@@ -88,5 +94,10 @@ function err(){
 		</script>
 	</c:if>
 	<!-- 위 내용이 다 실행된 뒤에 떠야해서 이 아래에 적는대 -->
+<%-- 	<c:if test="${blocked ne null }">
+		<script type="text/javascript">
+			blocked();
+		</script>
+	</c:if> --%>
 </body>
 </html>
