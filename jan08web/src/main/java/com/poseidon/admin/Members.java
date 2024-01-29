@@ -37,6 +37,7 @@ public class Members extends HttpServlet {
 		AdminDAO adao = new AdminDAO();
 		
 //		if(request.getParameter("grade") != null || request.getParameter("grade").equals("")) {
+		
 		if(request.getParameter("grade") != null) {
 			list = adao.list(Util.str2Int(request.getParameter("grade")));
 			request.setAttribute("list", list);
@@ -44,8 +45,7 @@ public class Members extends HttpServlet {
 			list = adao.list();	
 			request.setAttribute("list", list);
 		}
-		
-		
+				
 		request.setAttribute("memberList", memberList);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/members.jsp");

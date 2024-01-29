@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
-<link href="../css/admin.css" rel="stylesheet"/>
+<link href="../css/admin.css?ver=0.13" rel="stylesheet"/>
 <link href="../css/members.css" rel="stylesheet"/>
 <script type="text/javascript" src="../js/menu.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -46,17 +46,8 @@ $(function(){
 </head>
 <body>
 	<div class="wrap">
-		<div class="menu">
-			<nav>
-				<ul>
-					<li onclick="url('./members')"><i class="xi-users-o"></i> 회원 관리</li>
-					<li onclick="url('./board')"><i class="xi-document"></i> 게시글 관리</li>
-					<li onclick="url('./comments')"><i class="xi-comment-o"></i> 댓글 관리</li>
-					<li onclick="url('./info')"><i class="xi-lock-o"></i> farmer님</li>
-					<li></li>
-				</ul>
-			</nav>
-		</div>		
+		<!-- 메뉴 -->
+		<%@ include file="menu.jsp" %>	
 		<!-- 본문내용 -->
 		<div class="main">	
 		<article>
@@ -75,11 +66,11 @@ $(function(){
 			<table>
 				<thead>
 				<tr>
-					<td class="w1">번호</td>
-					<td class="w2">아이디</td>
-					<td class="w2">이름</td>
-					<td class="w4">가입일</td>
-					<td class="w1">등급</td>
+					<th class="w1">번호</th>
+					<th class="w2">아이디</th>
+					<th class="w2">이름</th>
+					<th class="w4">가입일</th>
+					<th class="w1">등급</th>
 				</tr>
 				</thead>
 				<tbody>
